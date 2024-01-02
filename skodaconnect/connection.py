@@ -217,17 +217,21 @@ class Connection:
             if self._session_fulldebug:
                 _LOGGER.debug(f'Get authorization page: "{authorizationEndpoint}"')
             try:
-                req = await self._session.get(
-                    url=authorizationEndpoint+\
+                url = authorizationEndpoint+\
                         '?redirect_uri='+APP_URI+\
                         '&nonce='+self._session_nonce+\
                         '&state='+self._session_state+\
                         '&response_type='+CLIENT_LIST[client].get('TOKEN_TYPES')+\
                         '&client_id='+CLIENT_LIST[client].get('CLIENT_ID')+\
-                        '&scope='+CLIENT_LIST[client].get('SCOPE'),
+                        '&scope='+CLIENT_LIST[client].get('SCOPE')
+                _LOGGER.debug(url)
+                req = await self._session.get(
+                    url,
                     headers=self._session_auth_headers,
                     allow_redirects=False
                 )
+
+                _LOGGER.debug(req.headers)
                 if req.headers.get('Location', False):
                     ref = req.headers.get('Location', '')
                     if 'error' in ref:

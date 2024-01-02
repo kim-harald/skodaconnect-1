@@ -21,9 +21,9 @@ except ModuleNotFoundError as e:
 
 logging.basicConfig(level=logging.DEBUG)
 
-USERNAME = 'email@domain.com'
-PASSWORD = 'password!'
-PRINTRESPONSE = False
+USERNAME = 'kim.dadswell@gmail.com'
+PASSWORD = 'yBFhVx9nrwVsrVZ'
+PRINTRESPONSE = True
 MILES = False
 INTERVAL = 20
 
